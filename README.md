@@ -62,8 +62,9 @@
 Для MySQL:
 
 - `java -Dspring.datasource.url=jdbc:mysql://localhost:3306/app -Dspring.datasource.username=app -Dspring.datasource.password=pass -Dspring.credit-gate.url=http://localhost:9999/credit -Dspring.payment-gate.url=http://localhost:9999/payment -jar artifacts\aqa-shop.jar`
+
 Для PostgreSQL:
-bash
+
 - `java -Dspring.datasource.url=jdbc:postgresql://localhost:5432/app -Dspring.datasource.username=app -Dspring.datasource.password=pass -Dspring.credit-gate.url=http://localhost:9999/credit -Dspring.payment-gate.url=http://localhost:9999/payment -jar artifacts\aqa-shop.jar`
 Приложение будет доступно по адресу: http://localhost:8080
 
