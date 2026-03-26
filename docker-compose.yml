@@ -1,0 +1,49 @@
+version: '3.7'
+
+services:
+  # MySQL база данных
+  mysql:
+    image: mysql:8.0
+    ports:
+      - '3306:3306'
+    environment:
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+      - MYSQL_DATABASE=app
+      - MYSQL_USER=app
+      - MYSQL_PASSWORD=pass
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      timeout: 10s
+      retries: 5
+
+  # PostgreSQL база данных
+  postgresql:
+    image: postgres:12-alpine
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_DB=app
+      - POSTGRES_USER=app
+      - POSTGRES_PASSWORD=pass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U app -d app" ]
+      timeout: 10s
+      retries: 5
+
+  # Node.js приложение (gate-simulator)
+  gate-simulator:
+    build: ./gate-simulator
+    ports:
+      - '9999:9999'
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:9999" ]
+      timeout: 10s
+      retries: 5
+
+volumes:
+  mysql_data:
+  postgres_data:

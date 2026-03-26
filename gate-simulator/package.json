@@ -1,0 +1,10 @@
+{
+  "name": "gate-simulator",
+  "version": "1.0.0",
+  "description": "Bank gate simulator",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.18.2",
+    "uuid": "^8.3.2"
+  }
+}
